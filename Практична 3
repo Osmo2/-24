@@ -1,0 +1,92 @@
+import java.util.Scanner;
+
+public class DataTypesDemo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Зчитування даних від користувача
+        System.out.print("Введіть ціле число: ");
+        int intValue = scanner.nextInt();
+
+        System.out.print("Введіть число з плаваючою точкою: ");
+        double doubleValue = scanner.nextDouble();
+
+        scanner.nextLine(); // очищення буфера
+        System.out.print("Введіть строку: ");
+        String stringValue = scanner.nextLine();
+
+        System.out.print("Введіть логічне значення (true/false): ");
+        boolean booleanValue = scanner.nextBoolean();
+
+        // Форматований вивід даних
+        System.out.println("\nВивід даних у різних форматах:");
+
+        // 1. Звичайний вивід
+        System.out.println("1. Звичайний вивід:");
+        System.out.println("Ціле число: " + intValue);
+        System.out.println("Число з плаваючою точкою: " + doubleValue);
+        System.out.println("Рядок: " + stringValue);
+        System.out.println("Логічне значення: " + booleanValue);
+
+        // 2. Форматований вивід через printf
+        System.out.println("\n2. Форматований вивід через printf:");
+        System.out.printf("Ціле число: %d\n", intValue);
+        System.out.printf("Число з плаваючою точкою: %.2f\n", doubleValue);
+        System.out.printf("Рядок: %s\n", stringValue);
+        System.out.printf("Логічне значення: %b\n", booleanValue);
+
+        // 3. Форматований вивід через String.format
+        System.out.println("\n3. Форматований вивід через String.format:");
+        String formattedInt = String.format("Ціле число: %d", intValue);
+        String formattedDouble = String.format("Число з плаваючою точкою: %.2f", doubleValue);
+        String formattedString = String.format("Рядок: %s", stringValue);
+        String formattedBoolean = String.format("Логічне значення: %b", booleanValue);
+        System.out.println(formattedInt);
+        System.out.println(formattedDouble);
+        System.out.println(formattedString);
+        System.out.println(formattedBoolean);
+
+        // 4. Табличний формат
+        System.out.println("\n4. Табличний формат:");
+        System.out.printf("%-20s %-20s %-20s %-20s\n", "Ціле число", "Число з плаваючою точкою", "Рядок", "Логічне значення");
+        System.out.printf("%-20d %-20.2f %-20s %-20b\n", intValue, doubleValue, stringValue, booleanValue);
+
+        // 5. Вивід з вирівнюванням
+        System.out.println("\n5. Вивід з вирівнюванням:");
+        System.out.printf("|%10d|\n", intValue);
+        System.out.printf("|%10.2f|\n", doubleValue);
+        System.out.printf("|%-10s|\n", stringValue);
+        System.out.printf("|%10b|\n", booleanValue);
+
+        // 6. Вивід у вигляді JSON
+        System.out.println("\n6. Вивід у вигляді JSON:");
+        System.out.printf("{\"intValue\": %d, \"doubleValue\": %.2f, \"stringValue\": \"%s\", \"booleanValue\": %b}\n", intValue, doubleValue, stringValue, booleanValue);
+
+        // 7. Вивід у вигляді списку
+        System.out.println("\n7. Вивід у вигляді списку:");
+        System.out.println("- Ціле число: " + intValue);
+        System.out.println("- Число з плаваючою точкою: " + doubleValue);
+        System.out.println("- Рядок: " + stringValue);
+        System.out.println("- Логічне значення: " + booleanValue);
+
+        // 8. Вивід з відступами
+        System.out.println("\n8. Вивід з відступами:");
+        System.out.printf("    Ціле число: %d\n", intValue);
+        System.out.printf("    Число з плаваючою точкою: %.2f\n", doubleValue);
+        System.out.printf("    Рядок: %s\n", stringValue);
+        System.out.printf("    Логічне значення: %b\n", booleanValue);
+
+        // 9. Вивід у рядок
+        System.out.println("\n9. Вивід у рядок:");
+        System.out.println("Ціле число, Число з плаваючою точкою, Рядок, Логічне значення: " + intValue + ", " + doubleValue + ", " + stringValue + ", " + booleanValue);
+
+        // 10. Вивід з використанням Esc-послідовностей
+        System.out.println("\n10. Вивід з використанням Esc-послідовностей:");
+        System.out.println("\tЦіле число: \t" + intValue);
+        System.out.println("\tЧисло з плаваючою точкою: \t" + doubleValue);
+        System.out.println("\tРядок: \t" + stringValue);
+        System.out.println("\tЛогічне значення: \t" + booleanValue);
+
+        scanner.close();
+    }
+}

@@ -1,0 +1,199 @@
+Завдання 1 Вариант 1
+import java.util.Scanner;
+
+public class DataTypesDemo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Виберіть дію:");
+        System.out.println("1. Перевірити число на парність");
+        System.out.println("2. Визначити пору року за номером місяця");
+        System.out.println("3. Перевірити знак числа");
+        System.out.print("Ваш вибір: ");
+
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                System.out.print("Введіть ціле число: ");
+                int number = scanner.nextInt();
+                if (number % 2 == 0) {
+                    System.out.println("Число парне.");
+                } else {
+                    System.out.println("Число непарне.");
+                }
+                break;
+
+            case 2:
+                System.out.print("Введіть номер місяця (1-12): ");
+                int month = scanner.nextInt();
+                String season;
+                if (month == 12 || month == 1 || month == 2) {
+                    season = "Зима";
+                } else if (month >= 3 && month <= 5) {
+                    season = "Весна";
+                } else if (month >= 6 && month <= 8) {
+                    season = "Літо";
+                } else if (month >= 9 && month <= 11) {
+                    season = "Осінь";
+                } else {
+                    season = "Некоректний номер місяця";
+                }
+                System.out.println("Пора року: " + season);
+                break;
+
+            case 3:
+                System.out.print("Введіть число: ");
+                int value = scanner.nextInt();
+                if (value > 0) {
+                    System.out.println("Число додатне.");
+                } else if (value < 0) {
+                    System.out.println("Число від'ємне.");
+                } else {
+                    System.out.println("Число дорівнює нулю.");
+                }
+                break;
+
+            default:
+                System.out.println("Некоректний вибір. Спробуйте ще раз.");
+        }
+
+        scanner.close();
+    }
+}
+Варіант 1. Розробити алгоритм з перевіркою умов (як вкладеними, так і невкладеними, порівняння в умовах не повторювати), написати програму обчислення значення заданої логічною залежністю функції.
+import java.util.Scanner;
+
+public class DataTypesDemo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Обчислення значення функції за логічною залежністю.");
+        System.out.print("Введіть значення x: ");
+        double x = scanner.nextDouble();
+
+        double result;
+
+        if (x > 0) {
+            if (x < 10) {
+                result = 2 * x + 5;
+            } else {
+                result = Math.pow(x, 2) - 4;
+            }
+        } else {
+            if (x == 0) {
+                result = 1;
+            } else {
+                result = x - 7;
+            }
+        }
+
+        System.out.println("Результат обчислення функції: " + result);
+
+        scanner.close();
+    }
+}
+Завдання 2
+import java.util.Scanner;
+
+public class DataTypesDemo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Завдання: реверс числа
+        System.out.print("Введіть ціле число: ");
+        int number = scanner.nextInt();
+        int reversedNumber = 0;
+        int originalNumber = number;
+
+        while (number != 0) {
+            int digit = number % 10;
+            reversedNumber = reversedNumber * 10 + digit;
+            number /= 10;
+        }
+
+        System.out.printf("Реверсоване число (з заповнювачем): %010d\n", reversedNumber);
+
+        // Завдання: ромб
+        System.out.print("Введіть висоту ромба (непарне число): ");
+        int height = scanner.nextInt();
+
+        if (height % 2 == 0) {
+            System.out.println("Висота повинна бути непарним числом.");
+        } else {
+            int mid = height / 2;
+
+            // Верхня частина ромба
+            for (int i = 0; i <= mid; i++) {
+                for (int j = 0; j < mid - i; j++) {
+                    System.out.print(" ");
+                }
+                for (int j = 0; j < 2 * i + 1; j++) {
+                    System.out.print("*");
+                }
+                System.out.println();
+            }
+
+            // Нижня частина ромба
+            for (int i = mid - 1; i >= 0; i--) {
+                for (int j = 0; j < mid - i; j++) {
+                    System.out.print(" ");
+                }
+                for (int j = 0; j < 2 * i + 1; j++) {
+                    System.out.print("*");
+                }
+                System.out.println();
+            }
+        }
+
+        scanner.close();
+    }
+}
+
+
+
+
+
+
+Завдання 3
+
+import java.util.Scanner;
+
+public class DataTypesDemo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Введіть висоту ромба (непарне число): ");
+        int height = scanner.nextInt();
+
+        if (height % 2 == 0) {
+            System.out.println("Висота повинна бути непарним числом.");
+        } else {
+            int mid = height / 2;
+
+            // Верхня частина ромба
+            for (int i = 0; i <= mid; i++) {
+                for (int j = 0; j < mid - i; j++) {
+                    System.out.print(" ");
+                }
+                for (int j = 0; j < 2 * i + 1; j++) {
+                    System.out.print("*");
+                }
+                System.out.println();
+            }
+
+            // Нижня частина ромба
+            for (int i = mid - 1; i >= 0; i--) {
+                for (int j = 0; j < mid - i; j++) {
+                    System.out.print(" ");
+                }
+                for (int j = 0; j < 2 * i + 1; j++) {
+                    System.out.print("*");
+                }
+                System.out.println();
+            }
+        }
+
+        scanner.close();
+    }
+}

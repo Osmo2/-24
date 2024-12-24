@@ -1,0 +1,69 @@
+import java.util.Scanner;
+
+public class DataTypesDemo {
+    public static void main(String[] args) {
+        // Виведення інформації про примітивні типи даних
+        System.out.println("Примітивні типи даних:");
+        System.out.printf("%s: розмір = %d біт, мінімальне значення = %d, максимальне значення = %d\n", 
+                "byte", Byte.SIZE, Byte.MIN_VALUE, Byte.MAX_VALUE);
+        System.out.printf("%s: розмір = %d біт, мінімальне значення = %d, максимальне значення = %d\n", 
+                "short", Short.SIZE, Short.MIN_VALUE, Short.MAX_VALUE);
+        System.out.printf("%s: розмір = %d біт, мінімальне значення = %d, максимальне значення = %d\n", 
+                "int", Integer.SIZE, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        System.out.printf("%s: розмір = %d біт, мінімальне значення = %d, максимальне значення = %d\n", 
+                "long", Long.SIZE, Long.MIN_VALUE, Long.MAX_VALUE);
+        System.out.printf("%s: розмір = %d біт, мінімальне значення = %.7g, максимальне значення = %.7g\n", 
+                "float", Float.SIZE, Float.MIN_VALUE, Float.MAX_VALUE);
+        System.out.printf("%s: розмір = %d біт, мінімальне значення = %.15g, максимальне значення = %.15g\n", 
+                "double", Double.SIZE, Double.MIN_VALUE, Double.MAX_VALUE);
+        System.out.printf("%s: розмір = %d біт, мінімальне значення = %b, максимальне значення = %b\n", 
+                "boolean", 1, Boolean.FALSE, Boolean.TRUE);
+        System.out.printf("%s: розмір = %d біт, мінімальне значення = %c, максимальне значення = %c\n", 
+                "char", Character.SIZE, Character.MIN_VALUE, Character.MAX_VALUE);
+
+        // Зчитування даних від користувача
+        Scanner scanner = new Scanner(System.in);
+        
+        // Зчитування цілих чисел (int)
+        System.out.print("Введіть ціле число (int): ");
+        String intInput = scanner.nextLine();
+        try {
+            int intValue = Integer.parseInt(intInput);
+            System.out.println("Перетворене значення (int): " + intValue);
+        } catch (NumberFormatException e) {
+            System.out.println("Помилка: введено некоректне ціле число.");
+        }
+
+        // Зчитування чисел з плаваючою точкою (double)
+        System.out.print("Введіть число з плаваючою точкою (double): ");
+        String doubleInput = scanner.nextLine();
+        try {
+            double doubleValue = Double.parseDouble(doubleInput);
+            System.out.println("Перетворене значення (double): " + doubleValue);
+        } catch (NumberFormatException e) {
+            System.out.println("Помилка: введено некоректне число з плаваючою точкою.");
+        }
+
+        // Зчитування логічного значення (boolean)
+        System.out.print("Введіть логічне значення (true/false): ");
+        String booleanInput = scanner.nextLine();
+        try {
+            boolean booleanValue = Boolean.parseBoolean(booleanInput);
+            System.out.println("Перетворене значення (boolean): " + booleanValue);
+        } catch (Exception e) {
+            System.out.println("Помилка: введено некоректне логічне значення.");
+        }
+
+        // Зчитування символу (char)
+        System.out.print("Введіть символ (char): ");
+        String charInput = scanner.nextLine();
+        if (charInput.length() == 1) {
+            char charValue = charInput.charAt(0);
+            System.out.println("Перетворене значення (char): " + charValue);
+        } else {
+            System.out.println("Помилка: введено некоректний символ.");
+        }
+
+        scanner.close();
+    }
+}

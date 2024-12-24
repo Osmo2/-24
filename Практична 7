@@ -1,0 +1,326 @@
+public class ZigzagPyramid {
+    public static void main(String[] args) {
+        int n = 5; // Розмір піраміди (кількість рядків)
+        
+        // Створення двовимірного масиву
+        int[][] pyramid = new int[n][];
+        
+        // Заповнення масиву у вигляді піраміди
+        for (int i = 0; i < n; i++) {
+            pyramid[i] = new int[i + 1]; // Кількість елементів у кожному рядку
+            for (int j = 0; j <= i; j++) {
+                pyramid[i][j] = (i + 1) * (j + 1); // Заповнення значень
+            }
+        }
+
+        // Виведення піраміди в звичайному порядку
+        System.out.println("Піраміда в звичайному порядку:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < pyramid[i].length; j++) {
+                System.out.print(pyramid[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        // Виведення піраміди у зворотному порядку
+        System.out.println("\nПіраміда у зворотному порядку:");
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = 0; j < pyramid[i].length; j++) {
+                System.out.print(pyramid[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+2. import java.util.Random;
+
+public class SquareRootArray {
+    public static void main(String[] args) {
+        // Розміри масиву
+        int rows = 5;
+        int cols = 5;
+
+        // Створення масиву випадкових чисел з плаваючою крапкою
+        double[][] array = new double[rows][cols];
+        Random random = new Random();
+        
+        // Заповнення масиву випадковими числами від 0 до 100
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                array[i][j] = random.nextDouble() * 100; // Число від 0 до 100
+            }
+        }
+
+        // Виведення оригінального масиву
+        System.out.println("Оригінальний масив:");
+        printArray(array);
+
+        // Заміна елементів з непарними індексами (рядок або стовпець) на їх квадратний корінь
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if ((i % 2 != 0 || j % 2 != 0)) {
+                    array[i][j] = Math.sqrt(array[i][j]);
+                }
+            }
+        }
+
+        // Виведення зміненого масиву
+        System.out.println("\nМасив після заміни на квадратний корінь для непарних індексів:");
+        printArray(array);
+    }
+
+    // Метод для виведення масиву
+    public static void printArray(double[][] array) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                System.out.printf("%.4f ", array[i][j]);
+            }
+            System.out.println();
+        }
+    }
+}
+3. import java.util.Scanner;
+
+public class MatrixDeterminant {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Розмір матриці
+        int size = 5;
+        
+        // Створення матриці
+        int[][] matrix = new int[size][size];
+        
+        // Заповнення матриці значеннями, введеними користувачем
+        System.out.println("Введіть елементи матриці 5x5:");
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                System.out.print("Елемент [" + i + "][" + j + "]: ");
+                matrix[i][j] = scanner.nextInt();
+            }
+        }
+
+        // Виведення матриці
+        System.out.println("\nВаша матриця:");
+        printMatrix(matrix);
+        
+        // Розрахунок визначника
+        int determinant = calculateDeterminant(matrix);
+        
+        // Виведення результату
+        System.out.println("\nВизначник матриці: " + determinant);
+
+        scanner.close();
+    }
+
+    // Метод для виведення матриці
+    public static void printMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    // Метод для розрахунку визначника матриці 5x5
+    public static int calculateDeterminant(int[][] matrix) {
+        int determinant = 0;
+        
+        for (int i = 0; i < 5; i++) {
+            determinant += matrix[0][i] * cofactor(matrix, 0, i);
+        }
+        
+        return determinant;
+    }
+
+    // Метод для обчислення кофактора
+    public static int cofactor(int[][] matrix, int row, int col) {
+        int[][] minor = new int[4][4];
+        int minorRow = 0;
+        
+        // Формуємо мінор для елемента матриці
+        for (int i = 0; i < 5; i++) {
+            if (i == row) continue;
+            
+            int minorCol = 0;
+            for (int j = 0; j < 5; j++) {
+                if (j == col) continue;
+                minor[minorRow][minorCol] = matrix[i][j];
+                minorCol++;
+            }
+            minorRow++;
+        }
+
+        // Обчислюємо визначник мінору 4x4
+        return (int) (Math.pow(-1, row + col) * determinant4x4(minor));
+    }
+
+    // Метод для обчислення визначника 4x4
+    public static int determinant4x4(int[][] matrix) {
+        int det = 0;
+        
+        for (int i = 0; i < 4; i++) {
+            det += matrix[0][i] * cofactor4x4(matrix, 0, i);
+        }
+
+        return det;
+    }
+
+    // Метод для обчислення кофактора для матриці 4x4
+    public static int cofactor4x4(int[][] matrix, int row, int col) {
+        int[][] minor = new int[3][3];
+        int minorRow = 0;
+
+        for (int i = 0; i < 4; i++) {
+            if (i == row) continue;
+            int minorCol = 0;
+            for (int j = 0; j < 4; j++) {
+                if (j == col) continue;
+                minor[minorRow][minorCol] = matrix[i][j];
+                minorCol++;
+            }
+            minorRow++;
+        }
+
+        return (int) (Math.pow(-1, row + col) * determinant3x3(minor));
+    }
+
+    // Метод для обчислення визначника 3x3
+    public static int determinant3x3(int[][] matrix) {
+        return matrix[0][0] * (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1])
+             - matrix[0][1] * (matrix[1][0] * matrix[2][2] - matrix[1][2] * matrix[2][0])
+             + matrix[0][2] * (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0]);
+    }
+}
+4. import java.util.Random;
+import java.util.Scanner;
+
+public class MatrixMinor {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Запит розміру матриці
+        System.out.print("Введіть розмір матриці (n x n): ");
+        int n = scanner.nextInt();
+
+        // Створення матриці розміру n x n
+        int[][] matrix = new int[n][n];
+        Random random = new Random();
+
+        // Заповнення матриці випадковими числами від 1 до 100
+        System.out.println("Матриця випадкових значень:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                matrix[i][j] = random.nextInt(100) + 1;
+                System.out.print(matrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+
+        // Вибір рядка та стовпця для обчислення мінору
+        System.out.print("Введіть індекс рядка для мінору (0 до " + (n - 1) + "): ");
+        int row = scanner.nextInt();
+
+        System.out.print("Введіть індекс стовпця для мінору (0 до " + (n - 1) + "): ");
+        int col = scanner.nextInt();
+
+        // Обчислення мінору
+        int[][] minor = getMinor(matrix, row, col);
+
+        // Виведення мінору
+        System.out.println("\nМінор матриці для елемента [" + row + "][" + col + "]:");
+        printMatrix(minor);
+
+        scanner.close();
+    }
+
+    // Метод для отримання мінору матриці
+    public static int[][] getMinor(int[][] matrix, int row, int col) {
+        int n = matrix.length;
+        int[][] minor = new int[n - 1][n - 1];
+        int minorRow = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (i == row) continue;
+            int minorCol = 0;
+            for (int j = 0; j < n; j++) {
+                if (j == col) continue;
+                minor[minorRow][minorCol] = matrix[i][j];
+                minorCol++;
+            }
+            minorRow++;
+        }
+
+        return minor;
+    }
+
+    // Метод для виведення матриці
+    public static void printMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+    }
+}
+5. import java.util.Random;
+import java.util.Scanner;
+
+public class TransposeMatrix {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Запит розміру матриці
+        System.out.print("Введіть розмір матриці (n x n): ");
+        int n = scanner.nextInt();
+
+        // Створення матриці розміру n x n
+        int[][] matrix = new int[n][n];
+        Random random = new Random();
+
+        // Заповнення матриці випадковими цілими числами від 1 до 100
+        System.out.println("Матриця випадкових значень:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                matrix[i][j] = random.nextInt(100) + 1; // випадкове число від 1 до 100
+                System.out.print(matrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+
+        // Обчислення транспонованої матриці
+        int[][] transposedMatrix = transpose(matrix);
+
+        // Виведення транспонованої матриці
+        System.out.println("\nТранспонована матриця:");
+        printMatrix(transposedMatrix);
+
+        scanner.close();
+    }
+
+    // Метод для обчислення транспонованої матриці
+    public static int[][] transpose(int[][] matrix) {
+        int n = matrix.length;
+        int[][] transposed = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                transposed[j][i] = matrix[i][j];
+            }
+        }
+
+        return transposed;
+    }
+
+    // Метод для виведення матриці
+    public static void printMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+    }
+}

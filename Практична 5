@@ -1,0 +1,71 @@
+Завдання 1 
+import java.util.Scanner;
+
+public class MathCalculations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Введення даних користувачем
+        System.out.print("Введіть значення a: ");
+        double a = scanner.nextDouble();
+        System.out.print("Введіть значення b: ");
+        double b = scanner.nextDouble();
+        System.out.print("Введіть значення t (якщо потрібно): ");
+        double t = scanner.nextDouble();
+        System.out.print("Введіть значення c (якщо потрібно): ");
+        double c = scanner.nextDouble();
+
+        // Виклик методу для розрахунків
+        double[] result = calculate(a, b, t, c);
+        double x = result[0];
+        double y = result[1];
+
+        // Виведення результатів
+        System.out.println("x = " + x);
+        System.out.println("y = " + y);
+    }
+
+    public static double[] calculate(double a, double b, double t, double c) {
+        double x, y;
+
+        if (t != 0) {
+            // Формули для варіанту з t
+            x = Math.exp(-b * t) * Math.sin(a * t + b) - Math.sqrt(Math.abs(b * t + a));
+            y = b * Math.sin(a * Math.pow(t, 2) * Math.cos(2 * t)) - 1;
+        } else {
+            // Формули для варіанту без t
+            x = Math.pow(2, Math.pow(b, 4)) + Math.pow(Math.pow(3, a), b);
+            y = Math.abs(a - b) * (1 + Math.pow(Math.sin(c), 2) / (a + b)) / (Math.exp(a - b) + a / 2);
+        }
+
+        return new double[]{x, y};
+    }
+}
+Завдання 2
+import java.util.Scanner;
+
+public class FunctionCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Введите значение a: ");
+        double a = scanner.nextDouble();
+        System.out.print("Введите значение b: ");
+        double b = scanner.nextDouble();
+        System.out.print("Введите значение x: ");
+        double x = scanner.nextDouble();
+
+        double result = calculateF(a, b, x);
+        System.out.println("f(x) = " + result);
+    }
+
+    public static double calculateF(double a, double b, double x) {
+        if (x >= -2 && x < 10) {
+            return Math.sqrt(b * x + 3);
+        } else if (x == 10) {
+            return Math.abs(Math.pow(x, 2) - a * b * x + 7);
+        } else {
+            return Math.cos(x - 1);
+        }
+    }
+}
